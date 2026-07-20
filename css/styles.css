@@ -207,9 +207,31 @@ html, body {
 }
 
 .target-thumb {
+  position: relative;
   width: 32px;
   height: 32px;
   border-radius: 50%;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.target-thumb-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 15%;
+  display: block;
+}
+
+.target-thumb-img.hidden {
+  display: none;
+}
+
+.target-thumb-fallback {
+  position: absolute;
+  inset: 0;
   background: var(--target-color, var(--surface-2));
   display: flex;
   align-items: center;
@@ -217,7 +239,6 @@ html, body {
   font-weight: 700;
   font-size: 0.9rem;
   color: rgba(0, 0, 0, 0.6);
-  flex-shrink: 0;
 }
 
 .target-name {
@@ -247,9 +268,36 @@ html, body {
   user-select: none;
 }
 
-.scene-bg {
+.scene-bg-img {
   position: absolute;
   inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+}
+
+.scene-bg-img.hidden {
+  display: none;
+}
+
+.scene-bg-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  background: repeating-conic-gradient(#2f3250 0% 25%, #262940 0% 50%) 0 0 / 40px 40px;
+}
+
+.scene-noise {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
   background-image:
     radial-gradient(circle at 15% 20%, rgba(255,255,255,0.05) 0, transparent 12%),
     radial-gradient(circle at 60% 70%, rgba(255,255,255,0.05) 0, transparent 15%),
@@ -257,23 +305,15 @@ html, body {
     radial-gradient(circle at 35% 85%, rgba(255,255,255,0.05) 0, transparent 12%);
 }
 
-.scene-bg--studio-placeholder {
-  background:
-    linear-gradient(180deg, #2b2f4a 0%, #2b2f4a 55%, #3a3f24 55%, #3a3f24 100%);
-}
-
 .target {
   position: absolute;
   transform: translate(-50%, -50%);
   aspect-ratio: 1 / 1;
   border-radius: 50%;
-  background: var(--target-color, #999);
   border: 3px solid rgba(255, 255, 255, 0.35);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   padding: 0;
   cursor: pointer;
+  overflow: hidden;
   transition: transform 0.1s ease, opacity 0.2s ease;
 }
 
@@ -281,7 +321,27 @@ html, body {
   transform: translate(-50%, -50%) scale(1.05);
 }
 
-.target-initial {
+.target-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 15%;
+  pointer-events: none;
+}
+
+.target-img.hidden {
+  display: none;
+}
+
+.target-fallback {
+  position: absolute;
+  inset: 0;
+  background: var(--target-color, #999);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-weight: 700;
   color: rgba(0, 0, 0, 0.55);
   font-size: 1.1rem;

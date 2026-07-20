@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Editor de cenas — Cadê o Casimiro (uso interno)</title>
+  <link rel="stylesheet" href="editor.css" />
+</head>
+<body>
+
+  <div class="internal-banner">
+    Ferramenta interna de posicionamento de personagens — não faz parte do jogo, não é linkada pros jogadores.
+  </div>
+
+  <div class="app">
+    <header class="toolbar">
+      <div class="field">
+        <label for="scene-select">Cenário</label>
+        <select id="scene-select"></select>
+      </div>
+      <div class="field">
+        <label for="scene-id">id da cena</label>
+        <input id="scene-id" type="text" placeholder="ex: estudio-01" />
+      </div>
+      <div class="field">
+        <label for="scene-name">nome da cena</label>
+        <input id="scene-name" type="text" placeholder="ex: Estúdio bagunçado" />
+      </div>
+      <button id="btn-generate" class="btn btn-primary">Salvar posições (gerar código)</button>
+    </header>
+
+    <main class="workspace">
+      <aside class="palette">
+        <h2>Personagens</h2>
+        <p class="hint">Arraste para a cena. Cada um só pode ser usado uma vez.</p>
+        <div id="palette-list" class="palette-list"></div>
+      </aside>
+
+      <div class="stage-wrap">
+        <div id="stage" class="stage">
+          <img id="stage-bg" class="stage-bg" alt="" />
+          <div id="stage-empty" class="stage-empty">Selecione um cenário</div>
+        </div>
+        <p class="hint">
+          Arraste um personagem pra dentro da cena. Clique e arraste o personagem pra mover.
+          Arraste o quadradinho no canto inferior direito dele pra redimensionar (define o raio de clique).
+        </p>
+      </div>
+    </main>
+
+    <section class="output-wrap">
+      <div class="output-header">
+        <h2>Código gerado</h2>
+        <button id="btn-copy" class="btn btn-secondary">Copiar código</button>
+      </div>
+      <textarea id="output" class="output" readonly placeholder="Clique em &quot;Salvar posições&quot; pra gerar o código aqui."></textarea>
+    </section>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="editor.js"></script>
+</body>
+</html>
