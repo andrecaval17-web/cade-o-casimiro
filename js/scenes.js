@@ -26,7 +26,7 @@ const SCENES = [
       { characterId: "casimiro", name: "Casimiro", thumb: "assets/chars/casimiro.png", color: "#ff6b35", x: 19, y: 825, radius: 45 },
       { characterId: "luisinho", name: "Luisinho", thumb: "assets/chars/luisinho.png", color: "#ffe66d", x: 1513, y: 608, radius: 40 },
       { characterId: "beltrao", name: "Beltrão", thumb: "assets/chars/beltrao.png", color: "#ff6f91", x: 1798, y: 66, radius: 40 },
-      { characterId: "donan", name: "Donan", thumb: "assets/chars/donan.png", color: "#a78bfa", x: 198, y: 1116, radius: 40 },
+      { characterId: "donan", name: "Donan", thumb: "assets/chars/donan.png", color: "#a78bfa", x: 198, y: 1060, radius: 40 },
       { characterId: "chicomoedas", name: "Chico Moedas", thumb: "assets/chars/chicomoedas.png", color: "#f6c744", x: 140, y: 413, radius: 40 },
       { characterId: "igor", name: "Igor", thumb: "assets/chars/igor.png", color: "#4ecdc4", x: 1160, y: 949, radius: 40 }
     ]
