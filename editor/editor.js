@@ -221,8 +221,8 @@
     const resizeHandle = document.createElement("div");
     resizeHandle.className = "token-resize";
 
-    token.appendChild(img);
     token.appendChild(fallback);
+    token.appendChild(img);
     token.appendChild(label);
     token.appendChild(removeBtn);
     token.appendChild(resizeHandle);
@@ -337,7 +337,7 @@
         const radius = Math.round((entry.sizePct / 100) * state.sceneWidth / 2);
         return (
           `      { characterId: "${char.id}", name: "${char.name}", ` +
-          `thumb: "/assets/chars/${char.file}", x: ${x}, y: ${y}, radius: ${radius} }`
+          `thumb: "assets/chars/${char.file}", color: "${char.color}", x: ${x}, y: ${y}, radius: ${radius} }`
         );
       })
       .join(",\n");
@@ -346,7 +346,7 @@
       `{\n` +
       `    id: "${sceneId}",\n` +
       `    name: "${sceneName}",\n` +
-      `    background: "/assets/scenes/${state.scenario.file}",\n` +
+      `    background: "assets/scenes/${state.scenario.file}",\n` +
       `    width: ${state.sceneWidth},\n` +
       `    height: ${state.sceneHeight},\n` +
       `    targets: [\n${targetsCode}\n    ]\n` +

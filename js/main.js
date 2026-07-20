@@ -19,6 +19,8 @@
     progressDisplay: document.getElementById("progress-display"),
     targetList: document.getElementById("target-list"),
     scene: document.getElementById("scene"),
+    sceneBgImg: document.getElementById("scene-bg-img"),
+    sceneBgFallback: document.getElementById("scene-bg-fallback"),
     resultTimeValue: document.getElementById("result-time-value"),
     resultRecord: document.getElementById("result-record"),
     resultBest: document.getElementById("result-best"),
@@ -98,8 +100,20 @@
   }
 
   function buildScene(scene) {
-    els.scene.className = `scene scene-bg--${scene.background}`;
     els.scene.querySelectorAll(".target").forEach((el) => el.remove());
+
+    els.sceneBgFallback.textContent = `Cenário "${scene.name}" ainda não disponível`;
+    els.sceneBgImg.classList.add("hidden");
+    els.sceneBgFallback.classList.remove("hidden");
+    els.sceneBgImg.onload = () => {
+      els.sceneBgImg.classList.remove("hidden");
+      els.sceneBgFallback.classList.add("hidden");
+    };
+    els.sceneBgImg.onerror = () => {
+      els.sceneBgImg.classList.add("hidden");
+      els.sceneBgFallback.classList.remove("hidden");
+    };
+    els.sceneBgImg.src = scene.background;
 
     scene.targets.forEach((target) => {
       const el = document.createElement("button");
@@ -111,7 +125,19 @@
       el.style.width = `${((target.radius * 2) / scene.width) * 100}%`;
       el.style.setProperty("--target-color", target.color);
       el.setAttribute("aria-label", target.name);
-      el.innerHTML = `<span class="target-initial">${target.name.charAt(0)}</span>`;
+
+      const img = document.createElement("img");
+      img.className = "target-img";
+      img.src = target.thumb;
+      img.alt = "";
+      img.onerror = () => img.classList.add("hidden");
+
+      const fallback = document.createElement("div");
+      fallback.className = "target-fallback";
+      fallback.textContent = target.name.charAt(0);
+
+      el.appendChild(fallback);
+      el.appendChild(img);
       el.addEventListener("click", () => handleTargetClick(target));
       els.scene.appendChild(el);
     });
@@ -123,10 +149,30 @@
       const li = document.createElement("li");
       li.className = "target-item";
       li.dataset.characterId = target.characterId;
-      li.innerHTML = `
-        <span class="target-thumb" style="--target-color: ${target.color}">${target.name.charAt(0)}</span>
-        <span class="target-name">${target.name}</span>
-      `;
+
+      const thumb = document.createElement("span");
+      thumb.className = "target-thumb";
+
+      const img = document.createElement("img");
+      img.className = "target-thumb-img";
+      img.src = target.thumb;
+      img.alt = "";
+      img.onerror = () => img.classList.add("hidden");
+
+      const fallback = document.createElement("span");
+      fallback.className = "target-thumb-fallback";
+      fallback.style.setProperty("--target-color", target.color);
+      fallback.textContent = target.name.charAt(0);
+
+      thumb.appendChild(fallback);
+      thumb.appendChild(img);
+
+      const name = document.createElement("span");
+      name.className = "target-name";
+      name.textContent = target.name;
+
+      li.appendChild(thumb);
+      li.appendChild(name);
       els.targetList.appendChild(li);
     });
   }
