@@ -226,7 +226,7 @@
   function buildShareText() {
     const seconds = (state.elapsedMs / 1000).toFixed(1);
     const url = window.location.href;
-    return `Achei todo mundo em ${seconds}s no desafio de hoje do Cadê o Casimiro! Bate meu recorde: ${url}`;
+    return `Achei o Casimiro em ${seconds}s no desafio de hoje do Cadê o Casimiro! Bate meu recorde: ${url}`;
   }
 
   async function handleShare() {
