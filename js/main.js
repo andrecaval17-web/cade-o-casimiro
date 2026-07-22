@@ -122,15 +122,27 @@
       el.dataset.characterId = target.characterId;
       el.style.left = `${(target.x / scene.width) * 100}%`;
       el.style.top = `${(target.y / scene.height) * 100}%`;
-      el.style.width = `${((target.radius * 2) / scene.width) * 100}%`;
       el.style.setProperty("--target-color", target.color);
       el.setAttribute("aria-label", target.name);
 
+      // Tamanho em % é derivado do raio (espaço de design) + proporção real
+      // da imagem, pra manter a arte com a proporção correta em vez de
+      // esticar/cortar num quadrado. Assume proporção 1:1 até a imagem
+      // carregar e revelar as dimensões reais.
+      const setSize = (ratio) => {
+        const heightPct = ((target.radius * 2) / scene.height) * 100;
+        const widthPct = (((target.radius * 2) * ratio) / scene.width) * 100;
+        el.style.height = `${heightPct}%`;
+        el.style.width = `${widthPct}%`;
+      };
+      setSize(1);
+
       const img = document.createElement("img");
       img.className = "target-img";
-      img.src = target.thumb;
       img.alt = "";
+      img.onload = () => setSize(img.naturalWidth / img.naturalHeight);
       img.onerror = () => img.classList.add("hidden");
+      img.src = target.thumb;
 
       const fallback = document.createElement("div");
       fallback.className = "target-fallback";

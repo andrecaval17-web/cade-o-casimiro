@@ -308,26 +308,24 @@ html, body {
 .target {
   position: absolute;
   transform: translate(-50%, -50%);
-  aspect-ratio: 1 / 1;
-  border-radius: 50%;
-  border: 3px solid rgba(255, 255, 255, 0.35);
   padding: 0;
+  border: none;
+  background: none;
   cursor: pointer;
-  overflow: hidden;
   transition: transform 0.1s ease, opacity 0.2s ease;
 }
 
 .target:hover {
-  transform: translate(-50%, -50%) scale(1.05);
+  transform: translate(-50%, -50%) scale(1.08);
 }
 
 .target-img {
   position: absolute;
   inset: 0;
+  display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: 50% 15%;
+  object-fit: fill;
   pointer-events: none;
 }
 
@@ -338,6 +336,7 @@ html, body {
 .target-fallback {
   position: absolute;
   inset: 0;
+  border-radius: 50%;
   background: var(--target-color, #999);
   display: flex;
   align-items: center;

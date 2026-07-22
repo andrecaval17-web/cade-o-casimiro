@@ -23,9 +23,9 @@ const SCENES = [
     name: "Estúdio bagunçado",
     background: "assets/scenes/cenario-estudio.png",
     width: 2000,
-    height: 1116,
+    height: 848,
     targets: [
-      { characterId: "casimiro", name: "Casimiro", thumb: "assets/chars/casimiro.png", color: "#ff6b35", x: 280, y: 379, radius: 53 }
+      { characterId: "casimiro", name: "Casimiro", thumb: "assets/chars/casimiro.png", color: "#2b2b3d", x: 385, y: 140, radius: 28 }
     ]
   },
   {
